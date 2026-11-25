@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PT Sayur Seger Sejahtera (SSS) — Fresh, Fast and Premium</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome untuk Ikon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              dark: '#1B5E20',
+              forest: '#2E5A27',
+              fresh: '#689F38',
+              lime: '#8BC34A',
+              sage: '#F3F6F1',
+              sageBorder: '#DCE5D7',
+              gold: '#F59E0B',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F3F6F1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #A5C496;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #689F38;
+    }
+    .hero-grid-bg {
+      background-image: radial-gradient(rgba(104, 159, 56, 0.14) 1.25px, transparent 1.25px);
+      background-size: 26px 26px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800 font-sans antialiased selection:bg-brand-lime/30 selection:text-brand-dark">
+
+  <!-- ==================== 1. NAVBAR ==================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-brand-sageBorder transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo PT Sayur Seger Sejahtera -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-11 h-11 rounded-2xl bg-brand-sage border border-brand-sageBorder flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
+            <svg viewBox="0 0 64 64" class="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="18" r="9" fill="#F59E0B"/>
+              <path d="M32 48C32 48 12 42 12 24C24 24 32 34 32 48Z" fill="#2E5A27"/>
+              <path d="M32 48C32 48 52 42 52 24C40 24 32 34 32 48Z" fill="#689F38"/>
+              <path d="M32 52C32 52 18 48 16 36C25 36 32 43 32 52Z" fill="#8BC34A"/>
+              <path d="M32 52C32 52 46 48 48 36C39 36 32 43 32 52Z" fill="#1B5E20"/>
+            </svg>
+          </div>
+          <div class="leading-tight">
+            <span class="block text-[11px] font-bold tracking-widest uppercase text-brand-fresh">PT Sayur Seger</span>
+            <span class="block font-display font-extrabold text-lg sm:text-xl text-brand-dark tracking-tight">
+              Sejahtera <span class="text-xs font-bold bg-brand-sage text-brand-forest px-2 py-0.5 rounded-full border border-brand-sageBorder ml-0.5">SSS</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
+          <a href="#produk" class="hover:text-brand-dark transition-colors">Produk Kami</a>
+          <a href="#keunggulan" class="hover:text-brand-dark transition-colors">Keunggulan</a>
+          <a href="#kemitraan" class="hover:text-brand-dark transition-colors">Kemitraan B2B</a>
+          <a href="#daftar-harga" class="hover:text-brand-dark transition-colors">Daftar Harga</a>
+          <a href="#kontak" class="hover:text-brand-dark transition-colors">Kontak</a>
+        </nav>
+
+        <!-- Action Buttons (Cart & Mobile Menu) -->
+        <div class="flex items-center gap-2.5">
+          <button
+            type="button"
+            onclick="toggleCart(true)"
+            class="relative inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-forest text-white font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xs transition-all"
+          >
+            <i class="fa-solid fa-basket-shopping text-brand-lime"></i>
+            <span class="hidden sm:inline">Keranjang</span>
+            <span id="cart-badge" class="bg-brand-fresh text-white text-[11px] font-bold px-2 py-0.5 rounded-full">0</span>
+          </button>
+
+          <button
+            type="button"
+            onclick="toggleMobileMenu()"
+            aria-label="Buka Menu"
+            class="md:hidden w-10 h-10 rounded-xl bg-brand-sage border border-brand-sageBorder text-brand-dark flex items-center justify-center"
+          >
+            <i id="mobile-menu-icon" class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-brand-sageBorder px-4 py-4 space-y-2.5">
+      <a href="#produk" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-700 hover:text-brand-dark">Produk Kami</a>
+      <a href="#keunggulan" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-700 hover:text-brand-dark">Keunggulan</a>
+      <a href="#kemitraan" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-700 hover:text-brand-dark">Kemitraan B2B</a>
+      <a href="#daftar-harga" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-700 hover:text-brand-dark">Daftar Harga</a>
+      <a href="#kontak" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-gray-700 hover:text-brand-dark">Kontak</a>
+    </div>
+  </header>
+
+  <!-- ==================== 2. HERO SECTION (LATAR PEMBUKA COVER.JPG) ==================== -->
+  <section class="relative overflow-hidden bg-brand-sage pt-12 pb-16 lg:pt-20 lg:pb-24">
+    <!-- Latar Belakang Full-Bleed cover.jpg + Fallback Pemandangan Kebun Pegunungan -->
+    <div class="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden">
+      <!-- Fallback SVG Pegunungan & Lahan Sayur jika cover.jpg tidak terbaca -->
+      <svg viewBox="0 0 1440 720" preserveAspectRatio="xMidYMid slice" class="w-full h-full object-cover opacity-50" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyMist" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FEFCE8"/>
+            <stop offset="55%" stop-color="#F3F6F1"/>
+            <stop offset="100%" stop-color="#DCE5D7"/>
+          </linearGradient>
+        </defs>
+        <rect width="1440" height="720" fill="url(#skyMist)"/>
+        <circle cx="620" cy="180" r="110" fill="#FDE68A" opacity="0.55"/>
+        <path d="M0 430 L320 260 L640 390 L1020 170 L1440 380 L1440 720 L0 720 Z" fill="#C5D8BE" opacity="0.5"/>
+        <path d="M0 500 Q480 430 960 490 T1440 460 L1440 720 L0 720 Z" fill="#A3C495" opacity="0.45"/>
+        <path d="M0 570 Q520 520 1040 580 T1440 550 L1440 720 L0 720 Z" fill="#8BC34A" opacity="0.3"/>
+      </svg>
+
+      <!-- Gambar Latar Resmi cover.jpg -->
+      <img
+        id="hero-cover-img"
+        src="cover.jpg"
+        alt="Latar Kebun Sayur Pegunungan PT Sayur Seger Sejahtera"
+        onerror="this.style.display='none';"
+        class="absolute inset-0 w-full h-full object-cover object-center opacity-45 scale-[1.01]"
+      />
+
+      <!-- Overlay Gradien Putih/Sage Semi-Transparan agar Teks & Logo Tetap Tajam -->
+      <div class="absolute inset-0 bg-gradient-to-b from-white/85 via-white/75 to-white"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.72)_0%,rgba(243,246,241,0.38)_65%,rgba(255,255,255,0.88)_100%)]"></div>
+    </div>
+
+    <!-- Tombol Kecil Muat / Ganti Latar Cover di Pojok Kanan Atas Hero -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 flex justify-end mb-4 sm:mb-0">
+      <input type="file" id="manual-cover-input" accept="image/*" class="hidden" onchange="handleManualCoverUpload(event)" />
+      <button
+        type="button"
+        onclick="document.getElementById('manual-cover-input').click()"
+        class="inline-flex items-center gap-1.5 bg-white/85 hover:bg-white backdrop-blur-md text-brand-forest border border-brand-sageBorder text-[11px] font-semibold px-3 py-1.5 rounded-full shadow-2xs transition-all"
+        title="Pilih file cover.jpg jika pratinjau browser belum memuat latar lokal"
+      >
+        <i class="fa-regular fa-image text-brand-fresh"></i>
+        <span>Muat / Ganti Cover</span>
+      </button>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-4xl mx-auto text-center space-y-6">
+        
+        <div class="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-white/95 backdrop-blur-xs border border-brand-sageBorder shadow-xs">
+          <span class="w-2.5 h-2.5 rounded-full bg-brand-fresh animate-pulse"></span>
+          <span class="text-xs font-bold text-brand-forest tracking-wide">PT Sayur Seger Sejahtera (SSS) · Fresh, Fast and Premium</span>
+        </div>
+
+        <h1 class="font-display font-extrabold text-4xl sm:text-5xl lg:text-[56px] text-brand-dark leading-[1.12] tracking-tight drop-shadow-[0_1px_1px_rgba(255,255,255,0.9)]">
+          Segar Alaminya, <span class="text-brand-fresh">Sehat Keluarganya</span>
+        </h1>
+
+        <p class="font-display font-semibold text-lg sm:text-xl text-gray-800">
+          Sayuran segar, sehat, dan siap untuk kebutuhan harian Anda.
+        </p>
+
+        <p class="text-gray-700 leading-relaxed text-sm sm:text-base max-w-2xl mx-auto bg-white/60 backdrop-blur-xs rounded-2xl px-4 py-2.5 border border-white/80">
+          Mitra terpercaya penyedia sayuran segar pilihan dan paket siap masak higienis dengan standar rantai dingin (<em>cold chain</em>) — melayani kebutuhan dapur keluarga (B2C) hingga pasokan terjadwal skala bisnis (B2B) di wilayah <strong>Bandung Raya & Jabodetabek</strong>.
+        </p>
+
+        <!-- Tombol CTA Utama -->
+        <div class="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+          <a href="#produk" class="inline-flex items-center justify-center gap-2.5 bg-brand-dark hover:bg-brand-forest text-white font-bold text-sm sm:text-base px-7 py-4 rounded-2xl shadow-lg shadow-brand-dark/20 transition-all">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Lihat Katalog & Pesan</span>
+          </a>
+          <button onclick="openPartnershipModal()" class="inline-flex items-center justify-center gap-2.5 bg-white/95 hover:bg-brand-sage text-brand-dark border border-brand-sageBorder font-bold text-sm sm:text-base px-7 py-4 rounded-2xl shadow-sm backdrop-blur-xs transition-all">
+            <i class="fa-solid fa-handshake text-brand-fresh"></i>
+            <span>Ajukan Kemitraan B2B</span>
+          </button>
+        </div>
+
+        <!-- Ringkasan Cepat Kategori Produk -->
+        <div class="pt-4 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-brand-forest">
+          <span class="bg-white/95 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-brand-sageBorder shadow-2xs">
+            <i class="fa-solid fa-check text-brand-fresh mr-1.5"></i>4 Varian Sayuran Segar Premium
+          </span>
+          <span class="bg-white/95 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-brand-sageBorder shadow-2xs">
+            <i class="fa-solid fa-check text-brand-fresh mr-1.5"></i>3 Varian Paket Siap Masak (250 g)
+          </span>
+          <span class="bg-white/95 backdrop-blur-xs px-3.5 py-1.5 rounded-full border border-brand-sageBorder shadow-2xs">
+            <i class="fa-solid fa-check text-brand-fresh mr-1.5"></i>Harga Resmi Transparan per pcs
+          </span>
+        </div>
+      </div>
+
+      <!-- 4 Pilar Keunggulan Utama -->
+      <div id="keunggulan" class="mt-14 pt-10 border-t border-brand-sageBorder/90 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white/95 backdrop-blur-xs hover:bg-brand-sage/90 transition-colors rounded-2xl p-5 border border-brand-sageBorder shadow-xs flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sage text-brand-dark border border-brand-sageBorder flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-seedling text-xl text-brand-fresh"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-bold text-sm text-brand-dark">Sayuran Premium</h2>
+            <p class="text-xs text-gray-600 mt-0.5">100% Segar & Terpilih</p>
+          </div>
+        </div>
+
+        <div class="bg-white/95 backdrop-blur-xs hover:bg-brand-sage/90 transition-colors rounded-2xl p-5 border border-brand-sageBorder shadow-xs flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sage text-brand-dark border border-brand-sageBorder flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-shield-halved text-xl text-brand-fresh"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-bold text-sm text-brand-dark">Higienis & Berkualitas</h2>
+            <p class="text-xs text-gray-600 mt-0.5">Sortasi & Kemasan Rapi</p>
+          </div>
+        </div>
+
+        <div class="bg-white/95 backdrop-blur-xs hover:bg-brand-sage/90 transition-colors rounded-2xl p-5 border border-brand-sageBorder shadow-xs flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sage text-brand-dark border border-brand-sageBorder flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-snowflake text-xl text-brand-fresh"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-bold text-sm text-brand-dark">Rantai Dingin</h2>
+            <p class="text-xs text-gray-600 mt-0.5">Sistem Cold Chain Terjaga</p>
+          </div>
+        </div>
+
+        <div class="bg-white/95 backdrop-blur-xs hover:bg-brand-sage/90 transition-colors rounded-2xl p-5 border border-brand-sageBorder shadow-xs flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-brand-sage text-brand-dark border border-brand-sageBorder flex items-center justify-center shrink-0">
+            <i class="fa-solid fa-truck-fast text-xl text-brand-fresh"></i>
+          </div>
+          <div>
+            <h2 class="font-display font-bold text-sm text-brand-dark">Distribusi Efisien</h2>
+            <p class="text-xs text-gray-600 mt-0.5">& Pengiriman Tepat Waktu</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 3. KATALOG PRODUK KAMI ==================== -->
+  <section id="produk" class="py-16 lg:py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-fresh bg-brand-sage px-3.5 py-1.5 rounded-full border border-brand-sageBorder mb-3">
+          Katalog Produk Resmi
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-dark tracking-tight">
+          Produk Segar & Siap Masak SSS
+        </h2>
+        <p class="text-gray-600 mt-3 text-sm sm:text-base">
+          Pilih sayuran segar pilihan dan paket siap masak praktis dalam kemasan higienis bersegel resmi <strong>PT Sayur Seger Sejahtera</strong>.
+        </p>
+      </div>
+
+      <!-- Control Bar: Filter Kategori, Pencarian Instan & Sinkronisasi Foto Kemasan 12_2.jpg -->
+      <div class="bg-brand-sage rounded-3xl p-4 sm:p-6 border border-brand-sageBorder mb-10 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-brand-forest block">Filter Kategori Produk:</span>
+            <p class="text-xs text-gray-500 mt-0.5">Harga jual resmi per satuan <strong>pcs</strong> sesuai kemasan masing-masing produk.</p>
+          </div>
+          <div id="category-tabs" class="flex flex-wrap gap-2">
+            <button type="button" data-cat="all" onclick="setCategory('all')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-brand-fresh text-white shadow-xs transition-all">
+              Semua Produk (7)
+            </button>
+            <button type="button" data-cat="segar" onclick="setCategory('segar')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-gray-700 border border-brand-sageBorder hover:bg-white/80 transition-all">
+              Sayuran Segar Premium (4)
+            </button>
+            <button type="button" data-cat="siap-masak" onclick="setCategory('siap-masak')" class="cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-gray-700 border border-brand-sageBorder hover:bg-white/80 transition-all">
+              Paket Siap Masak (3)
+            </button>
+          </div>
+        </div>
+
+        <!-- Bar Pencarian Instan & Tombol Muat Gambar Kemasan 12_2.jpg -->
+        <div class="pt-3.5 border-t border-brand-sageBorder/80 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+          <div class="relative flex-1 max-w-md">
+            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+            <input
+              type="text"
+              id="product-search-input"
+              oninput="handleSearch(this.value)"
+              placeholder="Cari produk atau komposisi (misal: brokoli, jagung manis, sayur asem)..."
+              class="w-full pl-9 pr-8 py-2.5 rounded-xl bg-white border border-brand-sageBorder text-xs sm:text-sm text-gray-700 focus:outline-none focus:border-brand-fresh"
+            />
+            <button
+              type="button"
+              id="clear-search-btn"
+              onclick="clearSearch()"
+              class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs p-1"
+              aria-label="Hapus pencarian"
+            >
+              <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+          </div>
+
+          <!-- Tombol Sinkronisasi Foto Kemasan 12_2.jpg -->
+          <div class="flex flex-wrap items-center gap-2.5">
+            <span id="crop-status-badge" class="text-[11px] font-medium text-brand-forest bg-white px-3 py-2 rounded-xl border border-brand-sageBorder flex items-center gap-1.5">
+              <i class="fa-solid fa-image text-brand-fresh"></i>
+              <span>Tampilan Kemasan SSS Aktif</span>
+            </span>
+            <input type="file" id="manual-display-input" accept="image/*" class="hidden" onchange="handleManualDisplayUpload(event)" />
+            <button
+              type="button"
+              onclick="document.getElementById('manual-display-input').click()"
+              class="inline-flex items-center justify-center gap-2 bg-white hover:bg-brand-dark text-brand-dark hover:text-white border border-brand-sageBorder font-semibold text-xs px-3.5 py-2.5 rounded-xl shadow-2xs transition-colors"
+              title="Pilih file 12_2.jpg untuk memotong foto kemasan produk secara otomatis ke katalog"
+            >
+              <i class="fa-solid fa-crop-simple"></i>
+              <span>Muat Ulang / Pilih Gambar 12_2.jpg</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Grid Container (7 Kartu Produk Individual) -->
+      <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <!-- Kartu produk dirender via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 4. SOLUSI KEMITRAAN & TARGET PASAR ==================== -->
+  <section id="kemitraan" class="py-16 lg:py-24 bg-brand-sage/60 border-y border-brand-sageBorder relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-fresh bg-white px-3.5 py-1.5 rounded-full border border-brand-sageBorder mb-3">
+          Solusi Pasokan B2B & B2C
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-dark tracking-tight">
+          Segmen Layanan & Kemitraan SSS
+        </h2>
+        <p class="text-gray-600 mt-3 text-sm sm:text-base">
+          Kami merancang rantai pasok yang fleksibel sesuai volume kebutuhan, frekuensi pengiriman, serta standar kualitas masing-masing mitra di Bandung Raya & Jabodetabek.
+        </p>
+      </div>
+
+      <!-- 4 Kartu Segmen Layanan -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Segmen 1: B2B Volume Tinggi -->
+        <div class="bg-white rounded-2xl p-6 border border-brand-sageBorder shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-dark text-white flex items-center justify-center shadow-xs">
+                <i class="fa-solid fa-building text-xl"></i>
+              </div>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-dark text-white">
+                Prioritas Utama
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark mb-2">B2B Volume Tinggi</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Katering korporasi/institusi, distributor bahan pangan, jaringan retail, dan dapur produksi skala besar.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 space-y-2.5 text-xs">
+            <div class="flex items-center gap-2 text-brand-forest font-semibold">
+              <i class="fa-solid fa-box text-brand-fresh"></i>
+              <span>100 – 3.000 kg / transaksi</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+              <i class="fa-solid fa-check-circle text-brand-fresh"></i>
+              <span>Harga stabil & konsistensi pasokan</span>
+            </div>
+            <button type="button" onclick="openPartnershipModal('B2B Volume Tinggi (100 - 3.000 kg)')" class="mt-2 w-full py-2.5 px-3 rounded-xl bg-brand-sage hover:bg-brand-dark text-brand-dark hover:text-white font-bold transition-colors">
+              Ajukan Kerja Sama →
+            </button>
+          </div>
+        </div>
+
+        <!-- Segmen 2: B2B Premium -->
+        <div class="bg-white rounded-2xl p-6 border border-brand-sageBorder shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-forest text-white flex items-center justify-center shadow-xs">
+                <i class="fa-solid fa-utensils text-xl"></i>
+              </div>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-forest text-white">
+                Prioritas Tinggi
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark mb-2">B2B Premium</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Hotel berbintang, restoran menengah-premium, kafe sehat, dan penyedia layanan <em>meal prep</em>.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 space-y-2.5 text-xs">
+            <div class="flex items-center gap-2 text-brand-forest font-semibold">
+              <i class="fa-solid fa-box text-brand-fresh"></i>
+              <span>20 – 250 kg / transaksi</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+              <i class="fa-solid fa-check-circle text-brand-fresh"></i>
+              <span>Spesifikasi ukuran seragam & tepat waktu</span>
+            </div>
+            <button type="button" onclick="openPartnershipModal('B2B Premium (20 - 250 kg)')" class="mt-2 w-full py-2.5 px-3 rounded-xl bg-brand-sage hover:bg-brand-dark text-brand-dark hover:text-white font-bold transition-colors">
+              Ajukan Kerja Sama →
+            </button>
+          </div>
+        </div>
+
+        <!-- Segmen 3: Retail Modern -->
+        <div class="bg-white rounded-2xl p-6 border border-brand-sageBorder shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-fresh text-white flex items-center justify-center shadow-xs">
+                <i class="fa-solid fa-cart-shopping text-xl"></i>
+              </div>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-lime/25 text-brand-dark">
+                Selektif
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark mb-2">Retail Modern</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Supermarket premium, <em>specialty grocery</em>, dan toko sayur modern dengan standar display tinggi.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 space-y-2.5 text-xs">
+            <div class="flex items-center gap-2 text-brand-forest font-semibold">
+              <i class="fa-solid fa-box text-brand-fresh"></i>
+              <span>50 – 1.000 kg / transaksi</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+              <i class="fa-solid fa-check-circle text-brand-fresh"></i>
+              <span>Kemasan berlabel rapi & kualitas konsisten</span>
+            </div>
+            <button type="button" onclick="openPartnershipModal('Retail Modern (50 - 1.000 kg)')" class="mt-2 w-full py-2.5 px-3 rounded-xl bg-brand-sage hover:bg-brand-dark text-brand-dark hover:text-white font-bold transition-colors">
+              Ajukan Kerja Sama →
+            </button>
+          </div>
+        </div>
+
+        <!-- Segmen 4: B2C Rumah Tangga -->
+        <div class="bg-white rounded-2xl p-6 border border-brand-sageBorder shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-lime text-brand-dark flex items-center justify-center shadow-xs">
+                <i class="fa-solid fa-users text-xl"></i>
+              </div>
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-sage text-brand-forest border border-brand-sageBorder">
+                Pengembangan
+              </span>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark mb-2">B2C Rumah Tangga</h3>
+            <p class="text-sm text-gray-600 leading-relaxed mb-4">
+              Konsumen peduli kesehatan, keluarga muda, dan pembeli digital yang mengutamakan kepraktisan dapur.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100 space-y-2.5 text-xs">
+            <div class="flex items-center gap-2 text-brand-forest font-semibold">
+              <i class="fa-solid fa-box text-brand-fresh"></i>
+              <span>0,5 – 3 kg / transaksi</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-600">
+              <i class="fa-solid fa-check-circle text-brand-fresh"></i>
+              <span>Kemudahan pemesanan & praktis dimasak</span>
+            </div>
+            <a href="#produk" class="mt-2 block text-center w-full py-2.5 px-3 rounded-xl bg-brand-sage hover:bg-brand-dark text-brand-dark hover:text-white font-bold transition-colors">
+              Belanja Harian →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 5. TABEL DAFTAR HARGA RESMI ==================== -->
+  <section id="daftar-harga" class="py-16 lg:py-24 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-brand-fresh bg-brand-sage px-3.5 py-1.5 rounded-full border border-brand-sageBorder mb-3">
+          Public Price List
+        </span>
+        <h2 class="font-display font-extrabold text-3xl sm:text-4xl text-brand-dark tracking-tight">
+          Daftar Harga Resmi Produk SSS
+        </h2>
+        <p class="text-gray-600 mt-3 text-sm sm:text-base">
+          Harga jual resmi produk sayuran segar dan paket siap masak PT Sayur Seger Sejahtera untuk kemudahan perencanaan belanja Anda.
+        </p>
+      </div>
+
+      <!-- Responsive Table Card -->
+      <div class="bg-white rounded-3xl border border-brand-sageBorder shadow-lg shadow-brand-dark/5 overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-brand-dark text-white text-xs sm:text-sm uppercase tracking-wider">
+                <th class="py-4 px-6 font-display font-bold">Nama Produk</th>
+                <th class="py-4 px-6 font-display font-bold">Kategori</th>
+                <th class="py-4 px-6 font-display font-bold">Berat Kemasan</th>
+                <th class="py-4 px-6 font-display font-bold text-right bg-brand-forest">Harga Resmi (Rp / pcs)</th>
+                <th class="py-4 px-6 font-display font-bold text-center">Pesan</th>
+              </tr>
+            </thead>
+            <tbody id="price-table-body" class="divide-y divide-gray-100 text-sm">
+              <!-- Baris tabel dirender otomatis dari data produk -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Table Footer Note & CTA -->
+        <div class="bg-brand-sage px-6 py-5 border-t border-brand-sageBorder flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p class="text-xs text-gray-600 text-center sm:text-left">
+            <i class="fa-solid fa-circle-info text-brand-fresh mr-1"></i>
+            Seluruh harga resmi berlaku per satuan <strong>pcs</strong> sesuai kemasan masing-masing produk (<strong>500 g</strong> untuk Wortel Premium dan <strong>250 g</strong> untuk produk lainnya).
+          </p>
+          <button onclick="openPartnershipModal()" class="inline-flex items-center justify-center gap-2 bg-brand-dark hover:bg-brand-forest text-white font-semibold text-xs sm:text-sm px-5 py-3 rounded-xl shadow-xs transition-all whitespace-nowrap">
+            <i class="fa-solid fa-file-signature"></i>
+            <span>Ajukan Kemitraan / Penawaran Volume Besar</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== 6. FOOTER ==================== -->
+  <footer id="kontak" class="bg-brand-dark text-white pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/15">
+        
+        <!-- Kolom 1: Brand -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center">
+              <svg viewBox="0 0 64 64" class="w-7 h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="32" cy="18" r="9" fill="#F59E0B"/>
+                <path d="M32 48C32 48 12 42 12 24C24 24 32 34 32 48Z" fill="#2E5A27"/>
+                <path d="M32 48C32 48 52 42 52 24C40 24 32 34 32 48Z" fill="#689F38"/>
+                <path d="M32 52C32 52 18 48 16 36C25 36 32 43 32 52Z" fill="#8BC34A"/>
+                <path d="M32 52C32 52 46 48 48 36C39 36 32 43 32 52Z" fill="#1B5E20"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[10px] uppercase tracking-widest text-brand-lime font-bold">PT Sayur Seger</span>
+              <span class="font-display font-extrabold text-lg">Sejahtera (SSS)</span>
+            </div>
+          </div>
+          <p class="text-sm text-white/80 leading-relaxed">
+            <em>"Segar Alaminya, Sehat Keluarganya."</em><br/>
+            Penyedia sayuran segar premium dan paket siap masak higienis untuk kebutuhan rumah tangga maupun mitra bisnis.
+          </p>
+        </div>
+
+        <!-- Kolom 2: Area Layanan & Rantai Dingin -->
+        <div class="space-y-3">
+          <h3 class="font-display font-bold text-base text-brand-lime">Area Layanan & Operasional</h3>
+          <ul class="space-y-2.5 text-sm text-white/80">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-brand-lime mt-1"></i>
+              <span><strong>Wilayah Utama:</strong> Bandung Raya & Perluasan Jabodetabek</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-snowflake text-brand-lime mt-1"></i>
+              <span><strong>Operasional Rantai Dingin:</strong> Senin – Minggu, 04.00 – 20.00 WIB</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-truck text-brand-lime mt-1"></i>
+              <span>Pengiriman terjadwal pagi hari untuk menjaga kesegaran optimal</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Kolom 3: Tautan Cepat -->
+        <div class="space-y-3">
+          <h3 class="font-display font-bold text-base text-brand-lime">Tautan Cepat</h3>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li><a href="#produk" class="hover:text-brand-lime transition-colors">Katalog Sayuran & Siap Masak</a></li>
+            <li><a href="#keunggulan" class="hover:text-brand-lime transition-colors">Keunggulan Produk SSS</a></li>
+            <li><a href="#kemitraan" class="hover:text-brand-lime transition-colors">Program Kemitraan B2B</a></li>
+            <li><a href="#daftar-harga" class="hover:text-brand-lime transition-colors">Daftar Harga Resmi</a></li>
+          </ul>
+        </div>
+
+        <!-- Kolom 4: Kontak Kemitraan -->
+        <div class="space-y-3">
+          <h3 class="font-display font-bold text-base text-brand-lime">Kontak & Pemesanan</h3>
+          <ul class="space-y-2.5 text-sm text-white/80">
+            <li class="flex items-center gap-2.5">
+              <i class="fa-brands fa-whatsapp text-brand-lime text-base"></i>
+              <span>+62 812-3456-7890 (Admin Pemesanan)</span>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <i class="fa-solid fa-envelope text-brand-lime"></i>
+              <span>kemitraan@sayursegersejahtera.co.id</span>
+            </li>
+          </ul>
+          <div class="pt-2">
+            <button onclick="openPartnershipModal()" class="w-full bg-brand-fresh hover:bg-brand-lime hover:text-brand-dark text-white font-semibold text-xs py-3 px-4 rounded-xl transition-all">
+              Hubungi Tim Kemitraan B2B
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <p>&copy; 2026 PT Sayur Seger Sejahtera (SSS). Hak Cipta Dilindungi.</p>
+        <p>Segar · Higienis · Terpercaya</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== 7. SLIDE-OVER KERANJANG BELANJA (DRAWER) ==================== -->
+  <div id="cart-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+  
+  <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full max-w-md bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+    <!-- Drawer Header -->
+    <div class="px-6 py-4 bg-brand-dark text-white flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <i class="fa-solid fa-basket-shopping text-brand-lime"></i>
+        <h3 class="font-display font-bold text-lg">Keranjang Pesanan SSS</h3>
+      </div>
+      <button onclick="toggleCart(false)" aria-label="Tutup Keranjang" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Info Banner inside Drawer -->
+    <div class="px-6 py-3 bg-brand-sage border-b border-brand-sageBorder flex items-center justify-between gap-2">
+      <span class="text-xs font-semibold text-brand-forest">
+        <i class="fa-solid fa-tag text-brand-fresh mr-1.5"></i>Harga Resmi PT Sayur Seger Sejahtera
+      </span>
+      <button onclick="toggleCart(false); openPartnershipModal();" class="text-[11px] font-bold text-brand-dark underline hover:text-brand-fresh">
+        Order Partai Besar?
+      </button>
+    </div>
+
+    <!-- Cart Items Scrollable Body -->
+    <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+      <!-- Daftar item keranjang dirender via JS -->
+    </div>
+
+    <!-- Drawer Footer: Customer Details & Checkout -->
+    <div id="cart-footer" class="p-6 bg-gray-50 border-t border-gray-200 space-y-4">
+      <div class="space-y-2.5">
+        <input type="text" id="cust-name" placeholder="Nama Pemesan / Nama Usaha *" class="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh bg-white" />
+        <input type="text" id="cust-address" placeholder="Alamat Pengiriman (Bandung Raya / Jabodetabek) *" class="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh bg-white" />
+        <input type="text" id="cust-note" placeholder="Catatan tambahan (opsional, misal: jadwal kirim pagi)" class="w-full text-xs sm:text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh bg-white" />
+      </div>
+
+      <div class="pt-2 border-t border-gray-200 flex items-center justify-between">
+        <span class="text-sm font-medium text-gray-600">Estimasi Total:</span>
+        <span id="cart-total-price" class="font-display font-extrabold text-xl text-brand-dark">Rp0</span>
+      </div>
+
+      <button onclick="checkoutWhatsApp()" class="w-full bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-sm py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center gap-2 transition-all">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Kirim Pesanan via WhatsApp</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== 8. MODAL PENGAJUAN KEMITRAAN B2B ==================== -->
+  <div id="partnership-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-brand-sageBorder">
+      <div class="px-6 py-4 bg-brand-dark text-white flex items-center justify-between">
+        <div>
+          <h3 class="font-display font-bold text-lg">Ajukan Kemitraan / Kontrak Pasokan</h3>
+          <p class="text-xs text-white/80">PT Sayur Seger Sejahtera (SSS)</p>
+        </div>
+        <button onclick="closePartnershipModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form onsubmit="submitPartnershipForm(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Nama Perusahaan / Usaha *</label>
+          <input type="text" id="b2b-company" required placeholder="Contoh: Katering Sehat Nusantara / Resto Hijau" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Nama PIC *</label>
+            <input type="text" id="b2b-pic" required placeholder="Nama lengkap Anda" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh" />
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Segmen Kemitraan *</label>
+            <select id="b2b-segment" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh bg-white">
+              <option value="B2B Volume Tinggi (100 - 3.000 kg)">B2B Volume Tinggi (Katering/Distributor)</option>
+              <option value="B2B Premium (20 - 250 kg)">B2B Premium (Hotel/Resto/Kafe)</option>
+              <option value="Retail Modern (50 - 1.000 kg)">Retail Modern (Supermarket/Toko Sayur)</option>
+              <option value="Outlet / Reseller">Outlet / Reseller</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Wilayah Pengiriman *</label>
+            <select id="b2b-area" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh bg-white">
+              <option value="Bandung Raya">Bandung Raya</option>
+              <option value="Jabodetabek">Jabodetabek</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1">Estimasi Kebutuhan / Minggu</label>
+            <input type="text" id="b2b-volume" placeholder="Misal: 150 kg / minggu" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-700 mb-1">Produk yang Diminati</label>
+          <textarea id="b2b-notes" rows="2" placeholder="Sebutkan komoditas utama yang dibutuhkan (misal: Wortel, Brokoli, Pokcoy, atau Paket Siap Masak)" class="w-full text-sm px-3.5 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:border-brand-fresh"></textarea>
+        </div>
+
+        <div class="pt-2 flex items-center justify-end gap-3">
+          <button type="button" onclick="closePartnershipModal()" class="px-4 py-2.5 rounded-xl text-sm font-semibold text-gray-600 hover:bg-gray-100">
+            Batal
+          </button>
+          <button type="submit" class="inline-flex items-center gap-2 bg-brand-dark hover:bg-brand-forest text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow-xs">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>Kirim Pengajuan via WhatsApp</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 9. TOAST NOTIFICATION & MODAL PRATINJAU WA ==================== -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+  <div id="wa-preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/50 backdrop-blur-xs">
+    <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-brand-sageBorder">
+      <div class="px-6 py-4 bg-[#25D366] text-white flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <h3 class="font-display font-bold text-base">Ringkasan Pesanan Siap Dikirim</h3>
+        </div>
+        <button onclick="closeWaPreview()" class="w-8 h-8 rounded-lg bg-black/10 hover:bg-black/20 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">
+        <p class="text-xs text-gray-600">Salin format pesanan di bawah ini atau klik tombol lanjutkan untuk membuka WhatsApp admin <strong>PT Sayur Seger Sejahtera</strong>:</p>
+        <textarea id="wa-preview-text" readonly rows="8" class="w-full text-xs font-mono p-3.5 rounded-xl bg-brand-sage border border-brand-sageBorder text-gray-800 focus:outline-none"></textarea>
+        <div class="flex flex-col sm:flex-row gap-2.5">
+          <button onclick="copyWaText()" class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold text-xs py-3 px-4 rounded-xl transition-colors">
+            <i class="fa-regular fa-copy mr-1.5"></i>Salin Teks Pesanan
+          </button>
+          <a id="wa-direct-link" href="#" target="_blank" rel="noopener noreferrer" class="flex-1 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold text-xs py-3 px-4 rounded-xl text-center transition-colors">
+            <i class="fa-brands fa-whatsapp mr-1.5"></i>Buka WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 10. JAVASCRIPT INTERAKTIF ==================== -->
+  <script>
+    /**
+     * DATA PRODUK PUBLIK PT SAYUR SEGER SEJAHTERA (SSS)
+     * Harga jual resmi tunggal per pcs (tanpa data internal HPP maupun margin).
+     * Dilengkapi koordinat pemotongan (crop) presisi dari foto kemasan 12_2.jpg
+     * serta fallback ilustrasi SVG kemasan SSS realistis.
+     */
+    const DISPLAY_IMAGE_SRC = '12_2.jpg';
+    const croppedProductImages = {}; // Menyimpan dataURL hasil potongan Canvas per produk
+
+    const PRODUCTS = [
+      {
+        id: 'wortel-premium',
+        name: 'Wortel Premium',
+        category: 'segar',
+        categoryLabel: 'Sayuran Segar Premium',
+        packaging: 'Kemasan 500 g',
+        unitLabel: '/ pcs',
+        description: 'Wortel segar pilihan berwarna cerah, tekstur renyah, manis alami, dan telah melalui proses sortasi higienis.',
+        price: 17000,
+        badge: 'Terlaris',
+        crop: { x: 0.402, y: 0.195, w: 0.118, h: 0.365 },
+        svgType: 'wortel'
+      },
+      {
+        id: 'pokcoy-premium',
+        name: 'Pokcoy Premium',
+        category: 'segar',
+        categoryLabel: 'Sayuran Segar Premium',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Pokcoy hijau segar dengan batang kokoh dan daun mulus, dijaga kesegarannya melalui sistem rantai dingin.',
+        price: 15000,
+        badge: '100% Segar',
+        crop: { x: 0.525, y: 0.185, w: 0.125, h: 0.375 },
+        svgType: 'pokcoy'
+      },
+      {
+        id: 'brokoli-premium',
+        name: 'Brokoli Premium',
+        category: 'segar',
+        categoryLabel: 'Sayuran Segar Premium',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Kuntum brokoli padat berwarna hijau tua alami, bebas ulat, dan dikemas rapat untuk mempertahankan nutrisi.',
+        price: 25000,
+        badge: 'Grade A',
+        crop: { x: 0.665, y: 0.195, w: 0.125, h: 0.365 },
+        svgType: 'brokoli'
+      },
+      {
+        id: 'sawi-premium',
+        name: 'Sawi Premium',
+        category: 'segar',
+        categoryLabel: 'Sayuran Segar Premium',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Sawi hijau segar pilihan dengan daun lebar dan bersih, cocok untuk kebutuhan rumah tangga maupun restoran.',
+        price: 12000,
+        badge: 'Higienis',
+        crop: { x: 0.802, y: 0.195, w: 0.125, h: 0.365 },
+        svgType: 'sawi'
+      },
+      {
+        id: 'paket-sayur-asem',
+        name: 'Paket Sayur Asem',
+        category: 'siap-masak',
+        categoryLabel: 'Paket Siap Masak',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Isi: Kacang panjang, jagung manis, melinjo, labu siam, dan bayam segar siap olah.',
+        price: 14000,
+        badge: 'Siap Masak',
+        crop: { x: 0.440, y: 0.555, w: 0.155, h: 0.355 },
+        svgType: 'asem'
+      },
+      {
+        id: 'paket-sayur-lodeh',
+        name: 'Paket Sayur Lodeh',
+        category: 'siap-masak',
+        categoryLabel: 'Paket Siap Masak',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Isi: Kacang panjang, terong, labu siam, kembang kol, dan cabai pilihan.',
+        price: 14000,
+        badge: 'Siap Masak',
+        crop: { x: 0.608, y: 0.555, w: 0.158, h: 0.355 },
+        svgType: 'lodeh'
+      },
+      {
+        id: 'paket-sayur-bayam',
+        name: 'Paket Sayur Bayam',
+        category: 'siap-masak',
+        categoryLabel: 'Paket Siap Masak',
+        packaging: 'Kemasan 250 g',
+        unitLabel: '/ pcs',
+        description: 'Isi: Bayam segar, jagung manis, wortel, bawang merah, dan bawang putih.',
+        price: 11000,
+        badge: 'Praktis',
+        crop: { x: 0.778, y: 0.555, w: 0.158, h: 0.355 },
+        svgType: 'bayam'
+      }
+    ];
+
+    /**
+     * Memotong (crop) setiap kemasan individual dari sumber gambar (file lokal 12_2.jpg
+     * atau file yang dipilih pengguna) menggunakan HTML5 Canvas.
+     */
+    function sliceProductImagesFromSource(imageSrc, isManualUpload = false) {
+      const img = new Image();
+      img.onload = function () {
+        const natW = img.naturalWidth;
+        const natH = img.naturalHeight;
+        if (!natW || !natH) return;
+
+        let successCount = 0;
+
+        PRODUCTS.forEach(product => {
+          try {
+            const sx = Math.round(product.crop.x * natW);
+            const sy = Math.round(product.crop.y * natH);
+            const sw = Math.round(product.crop.w * natW);
+            const sh = Math.round(product.crop.h * natH);
+
+            const canvas = document.createElement('canvas');
+            canvas.width = sw;
+            canvas.height = sh;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+
+            croppedProductImages[product.id] = canvas.toDataURL('image/jpeg', 0.94);
+            successCount++;
+          } catch (err) {
+            console.warn('Gagal memotong kemasan produk:', product.id, err);
+          }
+        });
+
+        if (successCount > 0) {
+          const badge = document.getElementById('crop-status-badge');
+          if (badge) {
+            badge.innerHTML = `<i class="fa-solid fa-circle-check text-brand-fresh"></i><span>Foto Kemasan <strong>12_2.jpg</strong> Terpasang (${successCount}/7)</span>`;
+          }
+          renderProducts();
+          renderPriceTable();
+          renderCart();
+          if (isManualUpload) {
+            showToast('7 foto kemasan produk berhasil dipotong dan dipasang ke katalog!');
+          }
+        }
+      };
+
+      img.onerror = function () {
+        const badge = document.getElementById('crop-status-badge');
+        if (badge) {
+          badge.innerHTML = `<i class="fa-solid fa-leaf text-brand-fresh"></i><span>Ilustrasi Kemasan SSS Aktif (Klik tombol di kanan untuk muat foto asli)</span>`;
+        }
+      };
+
+      img.src = imageSrc;
+    }
+
+    // Handler unggah manual gambar 12_2.jpg jika sandbox memblokir pembacaan file lokal
+    function handleManualDisplayUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (e.target && e.target.result) {
+          sliceProductImagesFromSource(e.target.result, true);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Handler unggah manual gambar latar pembuka cover.jpg
+    function handleManualCoverUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const coverImg = document.getElementById('hero-cover-img');
+        if (coverImg && e.target && e.target.result) {
+          coverImg.src = e.target.result;
+          coverImg.style.display = 'block';
+          showToast('Latar pembuka cover berhasil diperbarui!');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Merender visual produk (hasil potongan Canvas dari 12_2.jpg atau fallback ilustrasi SVG kemasan SSS)
+    function renderProductVisual(product, imgClass = 'w-full h-full object-contain', svgClass = 'w-32 h-32') {
+      const croppedSrc = croppedProductImages[product.id];
+      if (croppedSrc) {
+        return `<img src="${croppedSrc}" alt="${product.name}" class="${imgClass}" />`;
+      }
+      return `
+        <div class="w-full h-full flex items-center justify-center">
+          ${getProductFallbackSVG(product.svgType, svgClass)}
+        </div>
+      `;
+    }
+
+    // Fallback SVG Kemasan Berlabel 'SSS Sayur Seger Sejahtera' Realistis & Bersih
+    function getProductFallbackSVG(type, customClass = 'w-32 h-32') {
+      const svgs = {
+        wortel: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bagGradW" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+              <stop offset="100%" stop-color="#EEF5EA" stop-opacity="0.9"/>
+            </linearGradient>
+          </defs>
+          <rect x="26" y="10" width="98" height="145" rx="16" fill="url(#bagGradW)" stroke="#9CCC65" stroke-width="2"/>
+          <!-- Daun Wortel -->
+          <path d="M56 38 C51 22 42 19 40 24 M74 35 C72 17 79 15 81 22 M90 38 C95 22 103 21 105 26" stroke="#1B5E20" stroke-width="3.5" stroke-linecap="round"/>
+          <!-- Batang Wortel Segar -->
+          <path d="M44 42 L55 134 C56 139 62 139 63 134 L71 42 C62 35 53 35 44 42 Z" fill="#F97316"/>
+          <path d="M64 39 L73 136 C74 141 80 141 81 136 L90 39 C81 32 72 32 64 39 Z" fill="#EA580C"/>
+          <path d="M83 42 L90 132 C91 137 97 137 98 132 L106 42 C98 36 90 36 83 42 Z" fill="#FB923C"/>
+          <!-- Garis Tekstur Wortel -->
+          <path d="M52 60 H61 M71 58 H80 M89 62 H97 M54 118 H61 M73 120 H80" stroke="#FED7AA" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Label Resmi SSS -->
+          <rect x="43" y="64" width="64" height="58" rx="10" fill="#FFFFFF" stroke="#DCE5D7" stroke-width="1.5"/>
+          <circle cx="75" cy="73" r="4.5" fill="#F59E0B"/>
+          <path d="M75 79 C75 79 67 76 67 71 C71 71 75 74 75 79 Z" fill="#2E5A27"/>
+          <path d="M75 79 C75 79 83 76 83 71 C79 71 75 74 75 79 Z" fill="#689F38"/>
+          <text x="75" y="88" text-anchor="middle" fill="#1B5E20" font-size="9.5" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="94.5" text-anchor="middle" fill="#4B5563" font-size="4.8" font-weight="600" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <rect x="43" y="98" width="64" height="24" rx="7" fill="#1B5E20"/>
+          <text x="75" y="109" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700" font-family="sans-serif">Wortel</text>
+          <text x="75" y="117.5" text-anchor="middle" fill="#D9F99D" font-size="6.5" font-weight="600" font-family="sans-serif">Premium · 500 g</text>
+        </svg>`,
+        pokcoy: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="10" width="98" height="145" rx="16" fill="#F8FAF6" stroke="#9CCC65" stroke-width="2"/>
+          <!-- Pangkal Putih Pokcoy -->
+          <ellipse cx="75" cy="116" rx="26" ry="28" fill="#ECFCCB"/>
+          <path d="M58 134 C64 116 86 116 92 134" stroke="#D9F99D" stroke-width="2" fill="none"/>
+          <!-- Daun Hijau Segar -->
+          <ellipse cx="53" cy="70" rx="20" ry="32" fill="#22C55E"/>
+          <ellipse cx="97" cy="70" rx="20" ry="32" fill="#16A34A"/>
+          <ellipse cx="75" cy="60" rx="23" ry="36" fill="#15803D"/>
+          <!-- Label Resmi SSS -->
+          <rect x="43" y="66" width="64" height="58" rx="10" fill="#FFFFFF" stroke="#DCE5D7" stroke-width="1.5"/>
+          <circle cx="75" cy="75" r="4.5" fill="#F59E0B"/>
+          <path d="M75 81 C75 81 67 78 67 73 C71 73 75 76 75 81 Z" fill="#2E5A27"/>
+          <path d="M75 81 C75 81 83 78 83 73 C79 73 75 76 75 81 Z" fill="#689F38"/>
+          <text x="75" y="90" text-anchor="middle" fill="#1B5E20" font-size="9.5" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="96.5" text-anchor="middle" fill="#4B5563" font-size="4.8" font-weight="600" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <rect x="43" y="100" width="64" height="24" rx="7" fill="#1B5E20"/>
+          <text x="75" y="111" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700" font-family="sans-serif">Pokcoy</text>
+          <text x="75" y="119.5" text-anchor="middle" fill="#D9F99D" font-size="6.5" font-weight="600" font-family="sans-serif">Premium · 250 g</text>
+        </svg>`,
+        brokoli: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="10" width="98" height="145" rx="16" fill="#F8FAF6" stroke="#9CCC65" stroke-width="2"/>
+          <!-- Batang Brokoli -->
+          <path d="M63 88 L62 136 L88 136 L87 88 Z" fill="#BEF264"/>
+          <!-- Kuntum Brokoli -->
+          <circle cx="53" cy="64" r="20" fill="#15803D"/>
+          <circle cx="75" cy="52" r="25" fill="#166534"/>
+          <circle cx="97" cy="64" r="20" fill="#15803D"/>
+          <circle cx="62" cy="48" r="14" fill="#15803D"/>
+          <circle cx="88" cy="48" r="14" fill="#15803D"/>
+          <!-- Label Resmi SSS -->
+          <rect x="43" y="68" width="64" height="58" rx="10" fill="#FFFFFF" stroke="#DCE5D7" stroke-width="1.5"/>
+          <circle cx="75" cy="77" r="4.5" fill="#F59E0B"/>
+          <path d="M75 83 C75 83 67 80 67 75 C71 75 75 78 75 83 Z" fill="#2E5A27"/>
+          <path d="M75 83 C75 83 83 80 83 75 C79 75 75 78 75 83 Z" fill="#689F38"/>
+          <text x="75" y="92" text-anchor="middle" fill="#1B5E20" font-size="9.5" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="98.5" text-anchor="middle" fill="#4B5563" font-size="4.8" font-weight="600" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <rect x="43" y="102" width="64" height="24" rx="7" fill="#1B5E20"/>
+          <text x="75" y="113" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700" font-family="sans-serif">Brokoli</text>
+          <text x="75" y="121.5" text-anchor="middle" fill="#D9F99D" font-size="6.5" font-weight="600" font-family="sans-serif">Premium · 250 g</text>
+        </svg>`,
+        sawi: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="26" y="10" width="98" height="145" rx="16" fill="#F8FAF6" stroke="#9CCC65" stroke-width="2"/>
+          <!-- Daun & Tangkai Sawi -->
+          <path d="M51 138 C44 98 40 52 60 39 C71 32 80 32 90 40 C106 55 98 100 94 138 Z" fill="#22C55E"/>
+          <path d="M57 136 C54 102 56 64 75 46 C94 64 96 102 93 136 Z" fill="#16A34A"/>
+          <path d="M75 136 L75 52" stroke="#DCFCE7" stroke-width="4" stroke-linecap="round"/>
+          <!-- Label Resmi SSS -->
+          <rect x="43" y="66" width="64" height="58" rx="10" fill="#FFFFFF" stroke="#DCE5D7" stroke-width="1.5"/>
+          <circle cx="75" cy="75" r="4.5" fill="#F59E0B"/>
+          <path d="M75 81 C75 81 67 78 67 73 C71 73 75 76 75 81 Z" fill="#2E5A27"/>
+          <path d="M75 81 C75 81 83 78 83 73 C79 73 75 76 75 81 Z" fill="#689F38"/>
+          <text x="75" y="90" text-anchor="middle" fill="#1B5E20" font-size="9.5" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="96.5" text-anchor="middle" fill="#4B5563" font-size="4.8" font-weight="600" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <rect x="43" y="100" width="64" height="24" rx="7" fill="#1B5E20"/>
+          <text x="75" y="111" text-anchor="middle" fill="#FFFFFF" font-size="9" font-weight="700" font-family="sans-serif">Sawi</text>
+          <text x="75" y="119.5" text-anchor="middle" fill="#D9F99D" font-size="6.5" font-weight="600" font-family="sans-serif">Premium · 250 g</text>
+        </svg>`,
+        asem: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="10" width="106" height="145" rx="14" fill="#FFFFFF" stroke="#689F38" stroke-width="2.5"/>
+          <path d="M22 24 C22 15 28 10 37 10 L113 10 C122 10 128 15 128 24 L128 36 L22 36 Z" fill="#8BC34A"/>
+          <text x="75" y="23" text-anchor="middle" fill="#1B5E20" font-size="9" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="30" text-anchor="middle" fill="#1B5E20" font-size="4.5" font-weight="700" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <circle cx="110" cy="24" r="11" fill="#1B5E20"/>
+          <text x="110" y="23" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Siap</text>
+          <text x="110" y="29" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Masak</text>
+          <text x="75" y="52" text-anchor="middle" fill="#1B5E20" font-size="12" font-weight="800" font-family="sans-serif">Sayur Asem</text>
+          <text x="75" y="61" text-anchor="middle" fill="#4B5563" font-size="6.5" font-weight="600" font-family="sans-serif">Segar · Praktis · Lezat</text>
+          <!-- Mangkuk Ilustrasi -->
+          <circle cx="75" cy="91" r="23" fill="#F3F6F1" stroke="#689F38" stroke-width="1.5"/>
+          <circle cx="66" cy="87" r="6.5" fill="#FACC15"/>
+          <circle cx="82" cy="86" r="7.5" fill="#22C55E"/>
+          <circle cx="75" cy="99" r="6.5" fill="#F97316"/>
+          <path d="M22 124 L128 124 L128 141 C128 149 122 155 113 155 L37 155 C28 155 22 149 22 141 Z" fill="#2E5A27"/>
+          <text x="48" y="138" text-anchor="middle" fill="#D9F99D" font-size="5.5" font-weight="600" font-family="sans-serif">Berat Bersih</text>
+          <text x="48" y="147" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="800" font-family="sans-serif">250 g</text>
+        </svg>`,
+        lodeh: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="10" width="106" height="145" rx="14" fill="#FFFFFF" stroke="#689F38" stroke-width="2.5"/>
+          <path d="M22 24 C22 15 28 10 37 10 L113 10 C122 10 128 15 128 24 L128 36 L22 36 Z" fill="#8BC34A"/>
+          <text x="75" y="23" text-anchor="middle" fill="#1B5E20" font-size="9" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="30" text-anchor="middle" fill="#1B5E20" font-size="4.5" font-weight="700" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <circle cx="110" cy="24" r="11" fill="#1B5E20"/>
+          <text x="110" y="23" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Siap</text>
+          <text x="110" y="29" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Masak</text>
+          <text x="75" y="52" text-anchor="middle" fill="#1B5E20" font-size="12" font-weight="800" font-family="sans-serif">Sayur Lodeh</text>
+          <text x="75" y="61" text-anchor="middle" fill="#4B5563" font-size="6.5" font-weight="600" font-family="sans-serif">Segar · Praktis · Lezat</text>
+          <circle cx="75" cy="91" r="23" fill="#FEF9C3" stroke="#689F38" stroke-width="1.5"/>
+          <circle cx="66" cy="87" r="6.5" fill="#9333EA"/>
+          <circle cx="82" cy="86" r="7.5" fill="#84CC16"/>
+          <circle cx="75" cy="99" r="6.5" fill="#EF4444"/>
+          <path d="M22 124 L128 124 L128 141 C128 149 122 155 113 155 L37 155 C28 155 22 149 22 141 Z" fill="#2E5A27"/>
+          <text x="48" y="138" text-anchor="middle" fill="#D9F99D" font-size="5.5" font-weight="600" font-family="sans-serif">Berat Bersih</text>
+          <text x="48" y="147" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="800" font-family="sans-serif">250 g</text>
+        </svg>`,
+        bayam: `<svg viewBox="0 0 150 165" class="${customClass} mx-auto drop-shadow-sm" xmlns="http://www.w3.org/2000/svg">
+          <rect x="22" y="10" width="106" height="145" rx="14" fill="#FFFFFF" stroke="#689F38" stroke-width="2.5"/>
+          <path d="M22 24 C22 15 28 10 37 10 L113 10 C122 10 128 15 128 24 L128 36 L22 36 Z" fill="#8BC34A"/>
+          <text x="75" y="23" text-anchor="middle" fill="#1B5E20" font-size="9" font-weight="800" font-family="sans-serif">SSS</text>
+          <text x="75" y="30" text-anchor="middle" fill="#1B5E20" font-size="4.5" font-weight="700" font-family="sans-serif">Sayur Seger Sejahtera</text>
+          <circle cx="110" cy="24" r="11" fill="#1B5E20"/>
+          <text x="110" y="23" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Siap</text>
+          <text x="110" y="29" text-anchor="middle" fill="#FFF" font-size="5" font-weight="700" font-family="sans-serif">Masak</text>
+          <text x="75" y="52" text-anchor="middle" fill="#1B5E20" font-size="12" font-weight="800" font-family="sans-serif">Sayur Bayam</text>
+          <text x="75" y="61" text-anchor="middle" fill="#4B5563" font-size="6.5" font-weight="600" font-family="sans-serif">Segar · Praktis · Lezat</text>
+          <circle cx="75" cy="91" r="23" fill="#DCFCE7" stroke="#689F38" stroke-width="1.5"/>
+          <circle cx="66" cy="87" r="7.5" fill="#16A34A"/>
+          <circle cx="82" cy="86" r="6.5" fill="#FACC15"/>
+          <circle cx="75" cy="99" r="6.5" fill="#FB923C"/>
+          <path d="M22 124 L128 124 L128 141 C128 149 122 155 113 155 L37 155 C28 155 22 149 22 141 Z" fill="#2E5A27"/>
+          <text x="48" y="138" text-anchor="middle" fill="#D9F99D" font-size="5.5" font-weight="600" font-family="sans-serif">Berat Bersih</text>
+          <text x="48" y="147" text-anchor="middle" fill="#FFFFFF" font-size="8.5" font-weight="800" font-family="sans-serif">250 g</text>
+        </svg>`
+      };
+      return svgs[type] || svgs.wortel;
+    }
+
+    // State Aplikasi
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let cart = []; // [{ productId, qty }]
+    const ADMIN_WA_NUMBER = '6281234567890';
+
+    function formatRupiah(amount) {
+      return 'Rp ' + amount.toLocaleString('id-ID');
+    }
+
+    // Pencarian Produk
+    function handleSearch(val) {
+      searchQuery = val.trim().toLowerCase();
+      const clearBtn = document.getElementById('clear-search-btn');
+      if (clearBtn) {
+        clearBtn.classList.toggle('hidden', searchQuery.length === 0);
+      }
+      renderProducts();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('product-search-input');
+      if (input) input.value = '';
+      handleSearch('');
+    }
+
+    // Filter Kategori Produk
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-brand-fresh text-white shadow-xs transition-all';
+        } else {
+          btn.className = 'cat-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-white text-gray-700 border border-brand-sageBorder hover:bg-white/80 transition-all';
+        }
+      });
+      renderProducts();
+    }
+
+    // Render Kartu Produk Katalog
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const filtered = PRODUCTS.filter(p => {
+        const matchCat = currentCategory === 'all' || p.category === currentCategory;
+        const matchQuery = !searchQuery ||
+          p.name.toLowerCase().includes(searchQuery) ||
+          p.description.toLowerCase().includes(searchQuery) ||
+          p.categoryLabel.toLowerCase().includes(searchQuery);
+        return matchCat && matchQuery;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-brand-sage/60 rounded-3xl p-10 text-center border border-brand-sageBorder">
+            <div class="w-14 h-14 rounded-2xl bg-white text-brand-fresh flex items-center justify-center mx-auto mb-3 border border-brand-sageBorder">
+              <i class="fa-solid fa-magnifying-glass text-xl"></i>
+            </div>
+            <h3 class="font-display font-bold text-lg text-brand-dark">Produk Tidak Ditemukan</h3>
+            <p class="text-xs sm:text-sm text-gray-600 mt-1">Tidak ada produk yang cocok dengan kata kunci "<strong>${searchQuery}</strong>".</p>
+            <button type="button" onclick="clearSearch(); setCategory('all');" class="mt-4 bg-brand-dark text-white text-xs font-bold px-4 py-2.5 rounded-xl">
+              Tampilkan Semua Produk
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(product => {
+        const inCartItem = cart.find(item => item.productId === product.id);
+        const qtyInCart = inCartItem ? inCartItem.qty : 0;
+
+        return `
+          <div class="group bg-white rounded-2xl border border-brand-sageBorder hover:border-brand-fresh shadow-xs hover:shadow-xl hover:shadow-brand-dark/5 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+            <div>
+              <!-- Foto Kemasan Individual (Potongan 12_2.jpg / Fallback SVG Kemasan SSS) -->
+              <div class="relative bg-gradient-to-b from-brand-sage/90 via-white to-brand-sage/40 h-56 overflow-hidden flex items-center justify-center border-b border-brand-sageBorder/60">
+                ${renderProductVisual(product, 'w-full h-full object-contain pt-8 pb-2 px-4 group-hover:scale-105 transition-transform duration-500 drop-shadow-sm', 'w-36 h-36')}
+                <span class="absolute top-3 left-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-white/95 backdrop-blur-xs text-brand-forest border border-brand-sageBorder shadow-2xs">
+                  ${product.packaging}
+                </span>
+                <span class="absolute top-3 right-3 text-[11px] font-bold px-2.5 py-1 rounded-full bg-brand-dark/90 backdrop-blur-xs text-white shadow-2xs">
+                  ${product.badge}
+                </span>
+              </div>
+
+              <!-- Detail Informasi Produk -->
+              <div class="p-5 pb-3">
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-brand-fresh">${product.categoryLabel}</span>
+                <h3 class="font-display font-bold text-lg text-brand-dark mt-0.5 group-hover:text-brand-fresh transition-colors">
+                  ${product.name}
+                </h3>
+                <p class="text-xs text-gray-600 mt-2 leading-relaxed">
+                  ${product.description}
+                </p>
+              </div>
+            </div>
+
+            <!-- Harga Resmi per pcs & Tombol Keranjang -->
+            <div class="px-5 pb-5 pt-2">
+              <div class="bg-brand-sage/75 rounded-xl p-3 mb-3 flex items-baseline justify-between">
+                <div>
+                  <span class="block text-[10px] font-semibold uppercase text-gray-500">Harga Resmi</span>
+                  <span class="font-display font-extrabold text-xl text-brand-dark">${formatRupiah(product.price)}</span>
+                  <span class="text-xs text-gray-500 font-medium">${product.unitLabel}</span>
+                </div>
+                ${qtyInCart > 0 ? `<span class="text-[11px] font-bold text-brand-forest bg-white px-2.5 py-0.5 rounded-full border border-brand-sageBorder">${qtyInCart} pcs</span>` : ''}
+              </div>
+
+              ${qtyInCart > 0 ? `
+                <div class="flex items-center justify-between gap-2 bg-brand-sage rounded-xl p-1.5 border border-brand-sageBorder">
+                  <button type="button" onclick="updateCartQty('${product.id}', -1)" aria-label="Kurangi jumlah" class="w-9 h-9 rounded-lg bg-white hover:bg-gray-100 text-brand-dark font-extrabold text-sm flex items-center justify-center shadow-2xs transition-colors">
+                    <i class="fa-solid fa-minus text-xs"></i>
+                  </button>
+                  <span class="font-display font-bold text-sm text-brand-dark">${qtyInCart} pcs di keranjang</span>
+                  <button type="button" onclick="updateCartQty('${product.id}', 1)" aria-label="Tambah jumlah" class="w-9 h-9 rounded-lg bg-brand-dark hover:bg-brand-forest text-white font-extrabold text-sm flex items-center justify-center shadow-2xs transition-colors">
+                    <i class="fa-solid fa-plus text-xs"></i>
+                  </button>
+                </div>
+              ` : `
+                <button type="button" onclick="addToCart('${product.id}')" class="w-full bg-brand-dark hover:bg-brand-forest active:scale-[0.99] text-white font-semibold text-sm py-3 px-4 rounded-xl shadow-2xs transition-all flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-plus text-xs"></i>
+                  <span>Tambah ke Keranjang</span>
+                </button>
+              `}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Render Tabel Daftar Harga Resmi (5 Kolom)
+    function renderPriceTable() {
+      const tbody = document.getElementById('price-table-body');
+      tbody.innerHTML = PRODUCTS.map((p, index) => {
+        const rowBg = index % 2 === 0 ? 'bg-white' : 'bg-brand-sage/30';
+        return `
+          <tr class="${rowBg} hover:bg-brand-sage/70 transition-colors">
+            <td class="py-4 px-6">
+              <div class="flex items-center gap-3.5">
+                <div class="w-14 h-14 rounded-xl overflow-hidden bg-white border border-brand-sageBorder shrink-0 flex items-center justify-center">
+                  ${renderProductVisual(p, 'w-full h-full object-contain p-1', 'w-11 h-11')}
+                </div>
+                <div>
+                  <div class="font-display font-bold text-brand-dark">${p.name}</div>
+                  <div class="text-xs text-gray-500 mt-0.5 max-w-sm">${p.description}</div>
+                </div>
+              </div>
+            </td>
+            <td class="py-4 px-6 whitespace-nowrap">
+              <span class="inline-block text-xs font-semibold text-brand-forest bg-brand-sage px-2.5 py-1 rounded-full border border-brand-sageBorder">
+                ${p.categoryLabel}
+              </span>
+            </td>
+            <td class="py-4 px-6 text-xs font-semibold text-gray-600 whitespace-nowrap">
+              ${p.packaging}
+            </td>
+            <td class="py-4 px-6 text-right font-display font-extrabold text-base text-brand-dark bg-brand-sage/50 whitespace-nowrap">
+              ${formatRupiah(p.price)} <span class="text-xs font-medium text-gray-500">${p.unitLabel}</span>
+            </td>
+            <td class="py-4 px-6 text-center whitespace-nowrap">
+              <button
+                type="button"
+                onclick="addToCart('${p.id}')"
+                class="inline-flex items-center gap-1.5 bg-brand-dark hover:bg-brand-forest text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-2xs transition-colors"
+              >
+                <i class="fa-solid fa-plus text-[10px]"></i>
+                <span>Pesan</span>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Tambah Item ke Keranjang
+    function addToCart(productId) {
+      const existing = cart.find(item => item.productId === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ productId, qty: 1 });
+      }
+      const product = PRODUCTS.find(p => p.id === productId);
+      renderProducts();
+      renderCart();
+      showToast(`${product.name} ditambahkan ke keranjang!`);
+    }
+
+    // Ubah Kuantitas Item di Keranjang
+    function updateCartQty(productId, delta) {
+      const idx = cart.findIndex(item => item.productId === productId);
+      if (idx === -1) return;
+
+      cart[idx].qty += delta;
+      if (cart[idx].qty <= 0) {
+        cart.splice(idx, 1);
+      }
+      renderProducts();
+      renderCart();
+    }
+
+    // Render Isi Keranjang Slide-Over
+    function renderCart() {
+      const container = document.getElementById('cart-items-container');
+      const badge = document.getElementById('cart-badge');
+      const totalEl = document.getElementById('cart-total-price');
+
+      const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+      badge.textContent = totalItems;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="h-full flex flex-col items-center justify-center text-center py-12">
+            <div class="w-16 h-16 rounded-2xl bg-brand-sage text-brand-fresh flex items-center justify-center mb-4">
+              <i class="fa-solid fa-basket-shopping text-2xl"></i>
+            </div>
+            <h4 class="font-display font-bold text-gray-800">Keranjang Masih Kosong</h4>
+            <p class="text-xs text-gray-500 mt-1 max-w-xs">Pilih sayuran segar premium atau paket siap masak SSS dari katalog untuk mulai memesan.</p>
+            <button onclick="toggleCart(false)" class="mt-5 text-xs font-bold text-brand-dark bg-brand-sage hover:bg-brand-sageBorder px-4 py-2.5 rounded-xl transition-colors">
+              Lihat Katalog Produk
+            </button>
+          </div>
+        `;
+        totalEl.textContent = 'Rp 0';
+        return;
+      }
+
+      let grandTotal = 0;
+
+      container.innerHTML = cart.map(item => {
+        const product = PRODUCTS.find(p => p.id === item.productId);
+        const unitPrice = product.price;
+        const subtotal = unitPrice * item.qty;
+        grandTotal += subtotal;
+
+        return `
+          <div class="bg-brand-sage/60 rounded-2xl p-3.5 border border-brand-sageBorder flex items-center gap-3">
+            <div class="w-14 h-14 rounded-xl overflow-hidden bg-white border border-brand-sageBorder shrink-0 flex items-center justify-center">
+              ${renderProductVisual(product, 'w-full h-full object-contain p-1', 'w-11 h-11')}
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex items-start justify-between gap-2">
+                <h4 class="font-display font-bold text-sm text-brand-dark truncate">${product.name}</h4>
+                <button onclick="updateCartQty('${product.id}', -${item.qty})" aria-label="Hapus item" class="text-gray-400 hover:text-red-500 text-xs shrink-0">
+                  <i class="fa-solid fa-trash-can"></i>
+                </button>
+              </div>
+              <p class="text-[11px] text-gray-500">${product.packaging} · ${formatRupiah(unitPrice)} ${product.unitLabel}</p>
+
+              <div class="mt-2 flex items-center justify-between gap-2">
+                <div class="inline-flex items-center bg-white rounded-lg border border-gray-200 p-0.5">
+                  <button onclick="updateCartQty('${product.id}', -1)" class="w-6 h-6 rounded-md hover:bg-gray-100 text-gray-700 font-bold text-xs flex items-center justify-center">-</button>
+                  <span class="px-2.5 text-xs font-bold text-brand-dark">${item.qty} pcs</span>
+                  <button onclick="updateCartQty('${product.id}', 1)" class="w-6 h-6 rounded-md hover:bg-gray-100 text-gray-700 font-bold text-xs flex items-center justify-center">+</button>
+                </div>
+                <span class="font-display font-bold text-sm text-brand-dark">${formatRupiah(subtotal)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      totalEl.textContent = formatRupiah(grandTotal);
+    }
+
+    // Buka / Tutup Drawer Keranjang
+    function toggleCart(open) {
+      const overlay = document.getElementById('cart-overlay');
+      const drawer = document.getElementById('cart-drawer');
+
+      if (open) {
+        overlay.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          drawer.classList.remove('translate-x-full');
+        });
+      } else {
+        drawer.classList.add('translate-x-full');
+        setTimeout(() => {
+          overlay.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    // Checkout ke WhatsApp
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        showToast('Keranjang belanja Anda masih kosong!', 'warning');
+        return;
+      }
+
+      const name = document.getElementById('cust-name').value.trim();
+      const address = document.getElementById('cust-address').value.trim();
+      const note = document.getElementById('cust-note').value.trim();
+
+      if (!name || !address) {
+        showToast('Mohon lengkapi Nama Pemesan dan Alamat Pengiriman.', 'warning');
+        return;
+      }
+
+      let grandTotal = 0;
+      const itemLines = cart.map((item, idx) => {
+        const p = PRODUCTS.find(prod => prod.id === item.productId);
+        const sub = p.price * item.qty;
+        grandTotal += sub;
+        return `${idx + 1}. ${p.name} (${p.packaging}) — ${item.qty} pcs = ${formatRupiah(sub)}`;
+      }).join('\n');
+
+      const message = `Halo Admin *PT Sayur Seger Sejahtera (SSS)*, saya ingin melakukan pemesanan:\n\n` +
+        `*Nama Pemesan:* ${name}\n` +
+        `*Alamat Kirim:* ${address}\n` +
+        (note ? `*Catatan:* ${note}\n` : '') +
+        `\n*Rincian Pesanan:*\n${itemLines}\n\n` +
+        `*Estimasi Total:* ${formatRupiah(grandTotal)}\n\n` +
+        `Mohon konfirmasi ketersediaan dan jadwal pengirimannya. Terima kasih!`;
+
+      const waUrl = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(message)}`;
+
+      document.getElementById('wa-preview-text').value = message;
+      document.getElementById('wa-direct-link').href = waUrl;
+      toggleCart(false);
+      document.getElementById('wa-preview-modal').classList.remove('hidden');
+      document.getElementById('wa-preview-modal').classList.add('flex');
+    }
+
+    function closeWaPreview() {
+      const modal = document.getElementById('wa-preview-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function copyWaText() {
+      const textarea = document.getElementById('wa-preview-text');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      try {
+        document.execCommand('copy');
+        showToast('Teks pesanan berhasil disalin ke clipboard!');
+      } catch (err) {
+        showToast('Gagal menyalin teks, silakan salin manual.', 'warning');
+      }
+    }
+
+    // Modal Kemitraan B2B
+    function openPartnershipModal(defaultSegment = '') {
+      const modal = document.getElementById('partnership-modal');
+      if (defaultSegment) {
+        const select = document.getElementById('b2b-segment');
+        if (select) select.value = defaultSegment;
+      }
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closePartnershipModal() {
+      const modal = document.getElementById('partnership-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitPartnershipForm(e) {
+      e.preventDefault();
+      const company = document.getElementById('b2b-company').value.trim();
+      const pic = document.getElementById('b2b-pic').value.trim();
+      const segment = document.getElementById('b2b-segment').value;
+      const area = document.getElementById('b2b-area').value;
+      const volume = document.getElementById('b2b-volume').value.trim() || '-';
+      const notes = document.getElementById('b2b-notes').value.trim() || '-';
+
+      const message = `Halo Tim Kemitraan *PT Sayur Seger Sejahtera (SSS)*,\n\n` +
+        `Kami ingin mengajukan kerja sama / kontrak pasokan rutin dengan detail berikut:\n` +
+        `• *Perusahaan/Usaha:* ${company}\n` +
+        `• *PIC:* ${pic}\n` +
+        `• *Segmen:* ${segment}\n` +
+        `• *Wilayah:* ${area}\n` +
+        `• *Estimasi Kebutuhan:* ${volume}\n` +
+        `• *Komoditas Diminati:* ${notes}\n\n` +
+        `Mohon informasi lebih lanjut mengenai penawaran kerja sama B2B. Terima kasih.`;
+
+      const waUrl = `https://wa.me/${ADMIN_WA_NUMBER}?text=${encodeURIComponent(message)}`;
+      closePartnershipModal();
+
+      document.getElementById('wa-preview-text').value = message;
+      document.getElementById('wa-direct-link').href = waUrl;
+      document.getElementById('wa-preview-modal').classList.remove('hidden');
+      document.getElementById('wa-preview-modal').classList.add('flex');
+    }
+
+    // Toggle Menu Mobile
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const icon = document.getElementById('mobile-menu-icon');
+      menu.classList.toggle('hidden');
+      if (menu.classList.contains('hidden')) {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+      } else {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+      }
+    }
+
+    // Toast Notification Non-Blocking
+    function showToast(text, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgClass = type === 'warning' ? 'bg-amber-600' : 'bg-brand-dark';
+      const iconClass = type === 'warning' ? 'fa-circle-exclamation' : 'fa-circle-check';
+
+      toast.className = `${bgClass} text-white text-xs font-semibold px-4 py-3 rounded-xl shadow-lg flex items-center gap-2.5 transform transition-all duration-300 translate-y-2 opacity-0`;
+      toast.innerHTML = `<i class="fa-solid ${iconClass} text-brand-lime"></i><span>${text}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      });
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 2800);
+    }
+
+    // Inisialisasi saat halaman dimuat
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProducts();
+      renderPriceTable();
+      renderCart();
+      sliceProductImagesFromSource(DISPLAY_IMAGE_SRC, false);
+    });
+  </script>
+</body>
+</html>
